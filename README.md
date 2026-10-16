@@ -32,8 +32,8 @@ Scores on the 20% validation set (lower RMSE and MAE are better; both are on the
 
 | Encoding | RMSE | MAE | R² |
 | --- | --- | --- | --- |
-| **Label encoding** | **0.1292** | **0.0846** | **0.9105** |
-| One-hot encoding | 0.1314 | 0.0851 | 0.9075 |
+| **Label encoding** | **0.1275** | **0.0848** | **0.9129** |
+| One-hot encoding | 0.1319 | 0.0855 | 0.9067 |
 
 Label encoding won narrowly. Tree-based models like XGBoost split on thresholds, so they handle label-encoded categories well without needing one column per category.
 
@@ -47,12 +47,12 @@ Quality matters most: exterior quality (`ExterQual`) and overall quality (`Overa
 
 ```bash
 git clone https://github.com/jescaamondi/house-price-prediction.git
-cd house-price-prediction
-pip install -r requirements.txt
+cd house-price-prediction/House-prediction
+pip install pandas numpy matplotlib scikit-learn xgboost jupyter
 jupyter notebook housePrediction.ipynb
 ```
 
-Run all cells from top to bottom. The notebook writes a fresh `submission.csv` and saves the charts in `images/`.
+Run all cells from top to bottom. The notebook writes a fresh `submission.csv` with its predictions.
 
 ## Tools
 
