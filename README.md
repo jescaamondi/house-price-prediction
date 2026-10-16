@@ -19,7 +19,7 @@ The [Ames Housing dataset](https://www.kaggle.com/c/house-prices-advanced-regres
 
 1. **Look at the target.** Sale prices are right-skewed (many affordable houses, a few very expensive ones). A log transform brings the skewness from 1.88 down to 0.12, which helps the model.
 
-   ![Log-transformed sale price distribution](image/saleprice_log_distribution.png)
+   ![Log-transformed sale price distribution](House-prediction/image/saleprice_log_distribution.png)
 
 2. **Fill in missing values using what the data means.** For features like `PoolQC` or `Alley`, a blank means the house simply doesn't have one, so it becomes `"None"`. Area and count features become `0`. `LotFrontage` is filled with the median for that neighbourhood, since nearby houses tend to have similar lots.
 3. **Encode ordered categories as scores.** Quality ratings like `ExterQual` and `KitchenQual` (Poor → Excellent) are mapped to 0–5 so the model can use their natural order.
@@ -32,14 +32,14 @@ Scores on the 20% validation set (lower RMSE and MAE are better; both are on the
 
 | Encoding | RMSE | MAE | R² |
 | --- | --- | --- | --- |
-| **Label encoding** | **0.1292** | **0.0846** | **0.9105** |
-| One-hot encoding | 0.1314 | 0.0851 | 0.9075 |
+| **Label encoding** | **0.1275** | **0.0848** | **0.9129** |
+| One-hot encoding | 0.1319 | 0.0855 | 0.9067 |
 
 Label encoding won narrowly. Tree-based models like XGBoost split on thresholds, so they handle label-encoded categories well without needing one column per category.
 
 ### What drives the price
 
-![Top 15 feature importances](image/feature_importance.png)
+![Top 15 feature importances](House-prediction/image/feature_importance.png)
 
 Quality matters most: exterior quality (`ExterQual`) and overall quality (`OverallQual`) are the strongest predictors, followed by garage size, kitchen quality and basement quality. Living area (`GrLivArea`) also ranks highly.
 
@@ -47,12 +47,12 @@ Quality matters most: exterior quality (`ExterQual`) and overall quality (`Overa
 
 ```bash
 git clone https://github.com/jescaamondi/house-price-prediction.git
-cd house-price-prediction
-pip install -r requirements.txt
+cd house-price-prediction/House-prediction
+pip install pandas numpy matplotlib scikit-learn xgboost jupyter
 jupyter notebook housePrediction.ipynb
 ```
 
-Run all cells from top to bottom. The notebook writes a fresh `submission.csv` and saves the charts in `images/`.
+Run all cells from top to bottom. The notebook writes a fresh `submission.csv` with its predictions.
 
 ## Tools
 
