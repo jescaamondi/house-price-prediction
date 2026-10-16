@@ -19,7 +19,7 @@ The [Ames Housing dataset](https://www.kaggle.com/c/house-prices-advanced-regres
 
 1. **Look at the target.** Sale prices are right-skewed (many affordable houses, a few very expensive ones). A log transform brings the skewness from 1.88 down to 0.12, which helps the model.
 
-   ![Log-transformed sale price distribution](image/saleprice_log_distribution.png)
+   ![Log-transformed sale price distribution](House-prediction/image/saleprice_log_distribution.png)
 
 2. **Fill in missing values using what the data means.** For features like `PoolQC` or `Alley`, a blank means the house simply doesn't have one, so it becomes `"None"`. Area and count features become `0`. `LotFrontage` is filled with the median for that neighbourhood, since nearby houses tend to have similar lots.
 3. **Encode ordered categories as scores.** Quality ratings like `ExterQual` and `KitchenQual` (Poor → Excellent) are mapped to 0–5 so the model can use their natural order.
@@ -39,7 +39,7 @@ Label encoding won narrowly. Tree-based models like XGBoost split on thresholds,
 
 ### What drives the price
 
-![Top 15 feature importances](image/feature_importance.png)
+![Top 15 feature importances](House-prediction/image/feature_importance.png)
 
 Quality matters most: exterior quality (`ExterQual`) and overall quality (`OverallQual`) are the strongest predictors, followed by garage size, kitchen quality and basement quality. Living area (`GrLivArea`) also ranks highly.
 
